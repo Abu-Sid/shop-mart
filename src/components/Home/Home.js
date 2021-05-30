@@ -1,7 +1,9 @@
 
 import { CircularProgress, Container, Grid, InputBase, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../app/slices/basketSlice";
 import Products from "../Products/Products";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,16 +58,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
     const classes = useStyles();
-//   const [orderProduct,setOderProduct]=useContext(ProductContext)
-  const [cardData, setCardData] = useState();
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setCardData(data);
-        console.log(data);
-      });
-  }, []);
+  const dispatch = useDispatch()
+  useEffect(() => dispatch(getProducts()) , [])
+  const products = useSelector((state)=> state.basket.products)
+  console.log(products);
     return (
         <div style={{ backgroundColor: "#F4F7FC" }}>
       
@@ -89,8 +85,8 @@ const Home = () => {
       </Container>
       <Container>
         <Grid container spacing={3}>
-          {cardData ? (
-            cardData.map((data) => (
+          {products ? (
+            products.map((data) => (
               <Products data={data} key={data.id}></Products>
             ))
           ) : (

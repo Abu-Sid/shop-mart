@@ -23,7 +23,7 @@ function App() {
           <Route path="/order">
             {/* <Order/> */}
           </Route>
-          <Route path="/product/:id">
+          <Route path="/product/:id" >
             <SingleProduct/>
           </Route>
           <Route path="*">

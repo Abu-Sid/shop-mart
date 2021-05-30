@@ -15,3 +15,35 @@
 .MuiButton-root:hover {
   background: #3f90fc !important;
 }
+.sidebar__menuItem .sidebar__itemValue {
+  position: absolute;
+  padding: 4px 4px 5px 4px;
+  font-size: 10px;
+  text-align: center;
+  min-width: 18px;
+  height: 19px;
+  background: #f90;
+  color: #fff;
+  font-weight: 700;
+  left: calc(100% - 12px);
+  bottom: calc(100% - 12px);
+  margin: 0;
+  border-radius: 99px;
+}
+.sidebar__menuItem {
+  margin: 1rem auto;
+  position: relative;
+}
+.sidebar__menuIcon {
+  transform: scale(0.9);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.sidebar__menuItem.active .sidebar__menuIcon {
+  transform: scale(1);
+  fill: #1a1a2c !important;
+  stroke-width: none !important;
+  stroke: transparent !important;
+}
+.sidebar__menuItem:hover .sidebar__menuIcon {
+  transform: scale(1.05);
+}

@@ -8,7 +8,6 @@ import { pageTransition, pageZoom } from "../../util";
 import "./Products.css";
 
 function Products({data}) {
-    console.log(data);
   const  { title,price,id,category,image }= data
   const history = useHistory();
 

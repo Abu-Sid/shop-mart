@@ -9,8 +9,10 @@ import {
     Toolbar
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 import logo from '../../assets/Images/logo.jpeg';
 import './Navbar.css';
@@ -44,12 +46,21 @@ import './Navbar.css';
         },
       },
     }));
+    const iconStyle = (fontsize) => {
+        return {
+          fill: "transparent",
+          stroke: "#1a1a2c",
+          strokeWidth: 1,
+          fontSize: fontsize,
+        };
+      };
   
   const Navbar = () => {
       const [loggedUser, setLoggedUser] = useContext(UserContext);
     const classes = useStyles();
     const history = useHistory();
   
+    const cart = useSelector(state=> state.basket.cart)
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -79,9 +90,19 @@ import './Navbar.css';
           </Button>
         </MenuItem>
         <MenuItem>
-          <Button color="default" onClick={() => history.push("/order")}>
-            Order
-          </Button>
+        <NavLink
+          to="/order"
+          className="sidebar__menuItem"
+          activeClassName="active"
+          data-tip="Cart"
+          data-for="sidebarTooltip"
+        >
+          <ShoppingCartIcon
+            className="sidebar__menuIcon"
+            style={iconStyle(34)}
+          />
+          <span className="sidebar__itemValue">{cart?.length || 0}</span>
+        </NavLink>
         </MenuItem>
         <MenuItem>
           <Button color="default">Contact Us</Button>
@@ -127,9 +148,19 @@ import './Navbar.css';
                 <Button color="default" onClick={() => history.push("/")}>
                   Home
                 </Button>
-                <Button color="default" onClick={() => history.push("/order")}>
-                  Order
-                </Button>
+                <NavLink
+                    to="/order"
+                    className="sidebar__menuItem"
+                    activeClassName="active"
+                    data-tip="Cart"
+                    data-for="sidebarTooltip"
+                    >
+                    <ShoppingCartIcon
+                        className="sidebar__menuIcon"
+                        style={iconStyle(34)}
+                    />
+                    <span className="sidebar__itemValue">{cart?.length || 0}</span>
+                </NavLink>
                 <Button color="default">Contact Us</Button>
                 {loggedUser?.displayName ? (
               <>
