@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
+import SingleProduct from './components/SingleProduct/SingleProduct';
 
 export const UserContext= createContext();
 function App() {
@@ -22,8 +23,8 @@ function App() {
           <Route path="/order">
             {/* <Order/> */}
           </Route>
-          <Route path="/checkout/:id">
-            {/* <Checkout/> */}
+          <Route path="/product/:id">
+            <SingleProduct/>
           </Route>
           <Route path="*">
             <h1 style={{textAlign: "center"}}>page not found</h1>

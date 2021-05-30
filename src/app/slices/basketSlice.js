@@ -10,57 +10,23 @@ export const loadProductAsync = createAsyncThunk(
     }
 );
 const initialState = {
-  items: [],
-  products: null,
-  filteredProducts: null
+  cart: [],
+  products: [],
 };
 
 export const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
-    addProducts: (state, action) => {
-      state.products = action.payload
-      state.filteredProducts = action.payload
-    },
-    updateFilters: (state, action) => {
-      state.filteredProducts = action.payload
-    },
-    clearFilters: (state) => {
-      state.filteredProducts = state.products
-    },
+    // addProducts: (state, action) => {
+    //   state.products = action.payload
+    // },
     addToBasket: (state, action) => {
-      const index = state.items.findIndex(basketItem => basketItem.id == action.payload.id)
-      if(action.payload.quantity > 0){
-        if(index >= 0){
-          state.items[index].quantity += action.payload.quantity
-        }else{
-          state.items = [...state.items, action.payload]
-        }
-      }
+        state.cart.push(action.payload) 
     },
-    updateQuantity: (state, action) => {
-      const index = state.items.findIndex(basketItem => basketItem.id == action.payload.id)
-      
-      if(index >= 0) {
-        if(action.payload.quantity > 0){
-          state.items[index].quantity = action.payload.quantity
-        }else {
-          let newBasket = [...state.items]
-          newBasket.splice(index, 1)
-          state.items = newBasket
-        }
-      }
-      else console.warn(`Can't remove product ${action.payload.id} as its does not exist!`)
-    },
+    
     removeFromBasket: (state, action) => {
-      const index = state.items.findIndex(basketItem => basketItem.id == action.payload.id)
-      let newBasket = [...state.items]
-
-      if(index >= 0) newBasket.splice(index, 1)
-      else console.warn(`Can't remove product ${action.payload.id} as its does not exist!`)
-
-      state.items = newBasket
+        state.readingList = state.readingList.filter((r) => r.id !== action.payload)
     },
   },
 });
