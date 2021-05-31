@@ -26,8 +26,25 @@ export const basketSlice = createSlice({
     },
     
     removeFromBasket: (state, action) => {
-        state.cart = state.cart.filter((r) => r.id !== action.payload)
+        let pos = state.cart.findIndex((item) => item.id === action.payload.id);
+      let newBasket = [...state.cart];
+
+      if (pos > -1) {
+        newBasket.splice(pos, 1);
+      } else {
+        console.warn(
+          `Can't remove product (id: ${action.payload.id}) as its not in the basket`
+        );
+      }
+
+      state.cart = newBasket;
     },
+    removeAllFromBasket: (state, action) => {
+       let newBasket= state.cart = state.cart.filter(
+          (item) => item.id !== action.payload.id
+        );
+        state.cart=newBasket
+      },
   },
 });
 export const getProducts = (payload) => (dispatch) => {
@@ -36,7 +53,7 @@ export const getProducts = (payload) => (dispatch) => {
     .then((data) =>  dispatch(loadProducts(data)))
 }
 
-export const { addToBasket, removeFromBasket, loadProducts } = basketSlice.actions;
+export const { addToBasket, removeFromBasket, loadProducts ,removeAllFromBasket} = basketSlice.actions;
 
 // Selectors - This is how we pull information from the Global store slice
 // export const selectItems = (state) => state.basket.items;

@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Cart from './components/Cart/Cart';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import SingleProduct from './components/SingleProduct/SingleProduct';
@@ -21,7 +22,7 @@ function App() {
             {/* <Login/> */}
           </Route>
           <Route path="/order">
-            {/* <Order/> */}
+            <Cart/>
           </Route>
           <Route path="/product/:id" >
             <SingleProduct/>

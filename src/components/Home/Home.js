@@ -1,9 +1,9 @@
 
-import { CircularProgress, Container, Grid, InputBase, LinearProgress, makeStyles, Typography } from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
+import { CircularProgress, Container, Grid, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../app/slices/basketSlice";
+import Banner from "../Banner/Banner";
 import Products from "../Products/Products";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "600",
     textTransform: "uppercase",
     fontSize: "36px",
+    padding:"10px"
   },
   searchbox: {
     width: "90%",
@@ -59,29 +60,16 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
     const classes = useStyles();
   const dispatch = useDispatch()
-  useEffect(() => dispatch(getProducts()) , [])
+  useEffect(() => dispatch(getProducts()) , [dispatch])
   const products = useSelector((state)=> state.basket.products)
   console.log(products);
     return (
         <div style={{ backgroundColor: "#F4F7FC" }}>
-      
+      <Banner/>
       <Container className={classes.container}>
-        <Typography className={classes.heading} variant="h3" gutterBottom>
-          Get Your Computer within your Budget
+        <Typography className={classes.heading} variant="h5" gutterBottom>
+        'Shop Mart' the solution for your online shopping
         </Typography>
-        <div className={classes.searchbox}>
-        <div className={classes.searchIcon}>
-              <SearchIcon />
-        </div>
-        <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-        </div>
       </Container>
       <Container>
         <Grid container spacing={3}>
