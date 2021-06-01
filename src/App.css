@@ -6,20 +6,3 @@
   display: flex;
   flex-flow: column nowrap;
 }
-
-.app__inner {
-  padding-left: clamp(80px, 10vw, 100px);
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-img {
-  border: none;
-}
-
-@media (max-width: 550px) {
-  .app__inner {
-    padding: 0;
-  }
-}

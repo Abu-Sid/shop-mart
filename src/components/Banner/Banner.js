@@ -21,7 +21,7 @@ const Banner = () => {
         transitionTime={200}
       >
         {carouselImages.map((carouselImage) => (
-          <div>
+          <div key={carouselImage}>
             <img src={carouselImage} alt="carousel" />
           </div>
         ))}

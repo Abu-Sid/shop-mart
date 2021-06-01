@@ -44,9 +44,9 @@ const SingleProduct = () => {
                         <li> <h3>{productDetail?.description}</h3></li>
                     </ul>
                     <span className="productSingle__footer">
-                        <p className="productSingle__price">
+                        <div className="productSingle__price">
                             <h4>${productDetail?.price}</h4>
-                        </p>
+                        </div>
                         {(productDetail?.price > 25) && (
                             <p className="productSingle__deliveryMessage">
                                 <LabelImportantRoundedIcon

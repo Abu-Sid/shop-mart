@@ -56,7 +56,7 @@ import './Navbar.css';
       };
   
   const Navbar = () => {
-      const [loggedUser, setLoggedUser] = useContext(UserContext);
+    const [loggedUser, setLoggedUser] = useContext(UserContext);
     const classes = useStyles();
     const history = useHistory();
   
@@ -168,7 +168,7 @@ import './Navbar.css';
                   {loggedUser.displayName}
                 </Button>
   
-                <Button color="default" className={classes.custombtn} onClick={() => setLoggedUser({})} style={{ color: 'white' }}>
+                <Button color="default" className={classes.custombtn}  style={{ color: 'white' }} onClick={() => setLoggedUser({})}>
                   Sign Out
                 </Button>
               </>

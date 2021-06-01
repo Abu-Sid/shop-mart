@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 import emptyCart from "../../assets/Images/logo.jpeg";
 import CartItem from "../CartItem/CartItem";
 import "./Cart.css";
@@ -8,10 +9,10 @@ import "./Cart.css";
 
 function Cart() {
     const cartProduct = useSelector(state=> state.basket.cart)
-
+    const [loggedUser, setLoggedUser] = useContext(UserContext);
   return (
     <div className="cart">
-      <h4>Your Total Item {cartProduct.length}</h4>
+      <h4>Welcome {loggedUser.displayName} ! Your Total Item {cartProduct.length}</h4>
       {cartProduct.length > 0 ? (
         <div className="cart__inner">
           <div className="cart__items">

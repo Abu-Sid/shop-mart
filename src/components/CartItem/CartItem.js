@@ -4,6 +4,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
+import { toast } from "react-toastify";
 import { addToBasket, removeAllFromBasket, removeFromBasket } from "../../app/slices/basketSlice";
 import { errorAnim } from "../../util";
 import "./CartItem.css";
@@ -12,15 +13,18 @@ function CartItem({ item }) {
     console.log(item);
     const dispatch = useDispatch()
   const addBasket = () => {
-    dispatch(addToBasket({item}))
+    dispatch(addToBasket(item))
+    toast.success("Increased item");
   };
 
   const removeBasket = () => {
-    dispatch(removeFromBasket({item}));
+    dispatch(removeFromBasket(item));
+    toast.error("Removed item");    
   };
 
   const removeAll = () => {
-    dispatch(removeAllFromBasket({item}));
+    dispatch(removeAllFromBasket(item));
+    toast.error("Removed item");
   };
 
   return (

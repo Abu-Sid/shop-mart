@@ -68,7 +68,7 @@ const Home = () => {
       <Banner/>
       <Container className={classes.container}>
         <Typography className={classes.heading} variant="h5" gutterBottom>
-        'Shop Mart' the solution for your online shopping
+        'Shop Mart' -- solution of your online shopping
         </Typography>
       </Container>
       <Container>
